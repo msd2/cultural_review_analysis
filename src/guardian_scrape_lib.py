@@ -23,8 +23,25 @@ def search_articles(search_term, api_key, page=1, tag=0):
     return results
 
 
+
+def get_body_from_results(results):
+    '''
+    For each entry in the list of results, extract the body
+    of the result.
+
+    inputs
+        results: list of json data
+    outputs
+        body: list of strings
+    '''
+    body = []
+    for each_item in results:
+        body.append(each_item['fields']['body'])
+    return body
+
+
 results = search_articles(search_term='review', tag='film/film', page=2, api_key=api_key)
 
 # print(results[0].keys())
 
-print(results)
+print(get_body_from_results(results))
